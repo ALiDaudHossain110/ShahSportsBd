@@ -78,7 +78,7 @@
                       <li class="d-flex align-items-center gap-2">
                         @if($segment)
                         <img src="{{ asset('storage/' . $segment->image) }}" alt="{{ $segment->name }}" class="segment-img">
-                        <a class="dropdown-item" href="#">{{ $segment->name }}</a>
+                        <a class="dropdown-item" href="/Product_list/prod_seg/{{$segment->id}}">{{ $segment->name }}</a>
                         @else
                           <span class="dropdown-item">Segment Not Found</span>
                         @endif

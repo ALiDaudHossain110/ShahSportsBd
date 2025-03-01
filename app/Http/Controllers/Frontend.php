@@ -101,4 +101,34 @@ class Frontend extends Controller
         return view('product_list', ['Data' => $data]);
     }
 
+    public function segment($id)
+    {
+        // Retrieve the subcategory by its id
+        $segment = productSegment::find($id);
+
+        // If the subcategory is not found, abort with a 404 error
+        if (!$segment) {
+            abort(404, 'Subcategory not found');
+        }
+
+        $segmentlist = [];
+
+        $segmentlist[] = $segment; 
+        // Fetch all necessary data
+        $data = [
+            'products' => Products::all(),
+            'producttypes' => producttype::all(),
+            'productgenres' => productgenre::all(),
+            'productSegment' => productSegment::all(),
+            'subcategories' => subcategories::all(), 
+            'HomepageCarouselImages' => HomepageCarouselImages::all(),
+            'Brand' => Brand::all(),
+            'selectedSection'=> $id,
+            'segmentlist' => $segmentlist,
+        ];
+
+        // Pass the data to the view
+        return view('product_list', ['Data' => $data]);
+    }
+
 }
